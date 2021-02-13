@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>前端基础之页面渲染与网路请求 - Thetiso&#039;s Tech Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Thetiso&#039;s Tech Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Thetiso&#039;s Tech Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="新开主题介绍计算机基础，其实也是前端的基础！"><meta property="og:type" content="blog"><meta property="og:title" content="前端基础之页面渲染与网路请求"><meta property="og:url" content="http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/"><meta property="og:site_name" content="Thetiso&#039;s Tech Blog"><meta property="og:description" content="新开主题介绍计算机基础，其实也是前端的基础！"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/webkit.png"><meta property="og:image" content="http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/gecko.png"><meta property="og:image" content="http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/DOM-tree.png"><meta property="og:image" content="http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/CSSOM.png"><meta property="og:image" content="http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/Render-Tree.png"><meta property="article:published_time" content="2021-01-29T03:17:53.000Z"><meta property="article:modified_time" content="2021-01-29T04:41:19.049Z"><meta property="article:author" content="Thetiso"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/webkit.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/"},"headline":"Thetiso's Tech Blog","image":["http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/webkit.png","http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/gecko.png","http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/DOM-tree.png","http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/CSSOM.png","http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/Render-Tree.png"],"datePublished":"2021-01-29T03:17:53.000Z","dateModified":"2021-01-29T04:41:19.049Z","author":{"@type":"Person","name":"Thetiso"},"description":"新开主题介绍计算机基础，其实也是前端的基础！"}</script><link rel="canonical" href="http://thetiso.github.io/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Thetiso&#039;s Tech Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About Me</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-01-29T03:17:53.000Z" title="2021/1/29 上午11:17:53">2021-01-29</time>发表</span><span class="level-item"><time dateTime="2021-01-29T04:41:19.049Z" title="2021/1/29 下午12:41:19">2021-01-29</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></span><span class="level-item">11 分钟读完 (大约1719个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">前端基础之页面渲染与网路请求</h1><div class="content"><p>新开主题介绍计算机基础，其实也是前端的基础！</p>
+<a id="more"></a>
+
+<div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#ye-mian-xuan-ran">页面渲染</a><ul>
+<li><a href="#dom">DOM</a></li>
+<li><a href="#cssom">CSSOM</a></li>
+<li><a href="#jia-zai-js">加载JS</a></li>
+<li><a href="#render-tree">Render Tree</a><ul>
+<li><a href="#ye-mian-de-chong-hui-repaint-yu-chong-pai-reflow">页面的重绘（repaint）与重排（reflow）</a><ul>
+<li><a href="#chong-hui-repaint">重绘（repaint）：</a></li>
+<li><a href="#chong-pai-hui-liu-reflow">重排/回流（reflow）：</a></li>
+</ul>
+</li>
+<li><a href="#note">NOTE</a><ul>
+<li><a href="#1-chong-pai-bi-jiang-yin-qi-chong-hui-er-chong-hui-bu-yi-ding-hui-yin-qi-chong-pai">1. <strong>重排必将引起重绘，而重绘不一定会引起重排</strong>。</a></li>
+<li><a href="#2-he-shi-hui-yin-qi-chong-pai">2. <strong>何时回引起重排？</strong></a></li>
+<li><a href="#3-ru-he-jian-shao-he-bi-mian-chong-pai">3. **如何减少和避免重排 **</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#wang-luo-qing-qiu">网络请求</a><ul>
+<li><a href="#tcp-san-ci-wo-shou-jian-li-lian-jie">TCP 三次握手建立连接</a></li>
+<li><a href="#tcp-si-ci-wo-shou-duan-kai-lian-jie">TCP 四次握手断开连接</a></li>
+</ul>
+</li>
+<li><a href="#q-a">Q &amp; A</a><ul>
+<li><a href="#wei-shi-me-yao-jiang-js-fang-dao-ye-jiao-bu-fen">为什么要将js放到页脚部分</a></li>
+<li><a href="#yin-ru-yang-shi-de-ji-chong-fang-shi-de-quan-chong">引入样式的几种方式的权重</a></li>
+<li><a href="#css-shu-xing-shu-xie-shun-xu-jian-yi">css属性书写顺序建议</a></li>
+<li><a href="#he-chong-lei-xing-de-dom-cao-zuo-shi-hao-fei-xing-neng-de">何种类型的DOM操作是耗费性能的</a></li>
+</ul>
+</li>
+<li><a href="#can-kao-wen-dang">参考文档</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<hr>
+<p><strong>Q:从用户输入浏览器输入url到页面最后呈现 有哪些过程？</strong></p>
+<ul>
+<li>用户输入URL地址</li>
+<li>浏览器解析URL解析出主机名</li>
+<li>浏览器将主机名转换成服务器ip地址（浏览器先查找本地DNS缓存列表 没有的话 再向浏览器默认的DNS服务器发送查询请求 同时缓存）</li>
+<li>浏览器将端口号从URL中解析出来</li>
+<li>浏览器建立一条与目标Web服务器的TCP连接（三次握手）</li>
+<li>浏览器向服务器发送一条HTTP请求报文</li>
+<li>服务器向浏览器返回一条HTTP响应报文</li>
+<li>关闭连接 浏览器解析文档</li>
+<li>如果文档中有资源 重复6 7 8 动作 直至资源全部加载完毕</li>
+</ul>
+<h1><span id="ye-mian-xuan-ran">页面渲染</span><a href="#ye-mian-xuan-ran" class="header-anchor">#</a></h1><p>主流的两个浏览器内核为WebKit 和 Gecko(Mozilla)</p>
+<img src="/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/webkit.png" class alt="webkit渲染流程">
+
+<img src="/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/gecko.png" class alt="gecko渲染流程">
+
+<p>两者在用词上稍有差异，但主题流程基本为：</p>
+<ul>
+<li>HTML解析出DOM Tree</li>
+<li>CSS解析出Style Rules</li>
+<li>将二者关联生成Render Tree</li>
+<li>Layout 根据Render Tree计算每个节点的信息</li>
+<li>Painting 根据计算好的信息绘制整个页面</li>
+</ul>
+<h2><span id="dom">DOM</span><a href="#dom" class="header-anchor">#</a></h2><p>DOM树构建过程：</p>
+<ul>
+<li>读取html文档，</li>
+<li>将字节转换成字符，</li>
+<li>确定tokens（标签），</li>
+<li>再将tokens转换成节点，以节点构建 DOM 树<img src="/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/DOM-tree.png" class alt="dom tree生成过程">
+
+</li>
+</ul>
+<h2><span id="cssom">CSSOM</span><a href="#cssom" class="header-anchor">#</a></h2><p>CSSOM树构建过程与DOM树构建流程一致：</p>
+<ul>
+<li>读取CSS文档，</li>
+<li>将字节转换成字符，</li>
+<li>确定tokens（标签），</li>
+<li>再将tokens转换成节点，以节点构建 CSSOM 树<img src="/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/CSSOM.png" class alt="CSSOM生成过程">
+
+</li>
+</ul>
+<h2><span id="jia-zai-js">加载JS</span><a href="#jia-zai-js" class="header-anchor">#</a></h2><p>若在构建DOM树的过程中，当 HTML 解析器遇到一个 script 标记时，即遇到了js，将<strong>立即阻塞DOM树的构建</strong>，将控制权移交给 JavaScript 引擎，等到 JavaScript 引擎运行完毕，浏览器才会从中断的地方恢复DOM树的构建。</p>
+<p>其根本<strong>原因</strong>在于，JS会对DOM节点进行操作，浏览器无法预测未来的DOM节点的具体内容，为了防止无效操作，节省资源，只能阻塞DOM树的构建。譬如，若不阻塞DOM树的构建，若JS删除了某个DOM节点A，那么浏览器为构建此节点A花费的资源就是无效的。</p>
+<p>若在HTML头部加载JS文件，由于JS阻塞，会推迟页面的首绘。<em>为了加快页面渲染，一般将JS文件放到HTML底部进行加载，或是对JS文件执行async或defer加载</em>。</p>
+<h2><span id="render-tree">Render Tree</span><a href="#render-tree" class="header-anchor">#</a></h2><p>渲染树（Render Tree）由DOM树、CSSOM树合并而成，但并不是必须等DOM树及CSSOM树加载完成后才开始合并构建渲染树。<strong>三者的构建并无先后条件，亦非完全独立，而是会有交叉，并行构建</strong>。因此会形成一边加载，一边解析，一边渲染的工作现象。</p>
+<p>构建渲染树，根据渲染树计算每个可见元素的布局，并输出到绘制流程，将像素渲染到屏幕上。</p>
+<img src="/2021/01/29/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%B8%8E%E7%BD%91%E8%B7%AF%E8%AF%B7%E6%B1%82/Render-Tree.png" class alt="Render-Tree">
+
+
+<h3><span id="ye-mian-de-chong-hui-repaint-yu-chong-pai-reflow">页面的重绘（repaint）与重排（reflow）</span><a href="#ye-mian-de-chong-hui-repaint-yu-chong-pai-reflow" class="header-anchor">#</a></h3><h4><span id="chong-hui-repaint">重绘（repaint）：</span><a href="#chong-hui-repaint" class="header-anchor">#</a></h4><p>屏幕的一部分要重绘。<strong>渲染树节点发生改变，但不影响该节点在页面当中的空间位置及大小</strong>。譬如某个div标签节点的背景颜色、字体颜色等等发生改变，但是该div标签节点的宽、高、内外边距并不发生变化，此时触发浏览器重绘（repaint）。</p>
+<h4><span id="chong-pai-hui-liu-reflow">重排/回流（reflow）：</span><a href="#chong-pai-hui-liu-reflow" class="header-anchor">#</a></h4><p>当渲染树节点发生改变，影响了节点的几何属性（如宽、高、内边距、外边距、或是float、position、display：none;等等），导致节点位置发生变化，此时触发浏览器重排（reflow），需要重新生成渲染树。譬如JS为某个p标签节点添加新的样式：”display:none;”。导致该p标签被隐藏起来，该p标签之后的所有节点位置都会发生改变。此时浏览器需要重新生成渲染树，重新布局，即重排（reflow）。</p>
+<h3><span id="note">NOTE</span><a href="#note" class="header-anchor">#</a></h3><h4><span id="1-chong-pai-bi-jiang-yin-qi-chong-hui-er-chong-hui-bu-yi-ding-hui-yin-qi-chong-pai">1. <strong>重排必将引起重绘，而重绘不一定会引起重排</strong>。</span><a href="#1-chong-pai-bi-jiang-yin-qi-chong-hui-er-chong-hui-bu-yi-ding-hui-yin-qi-chong-pai" class="header-anchor">#</a></h4><h4><span id="2-he-shi-hui-yin-qi-chong-pai">2. <strong>何时回引起重排？</strong></span><a href="#2-he-shi-hui-yin-qi-chong-pai" class="header-anchor">#</a></h4><p>当页面布局和几何属性改变时就需要重排。下述情况会发生浏览器重排：</p>
+<ol>
+<li>添加或者删除可见的DOM元素；</li>
+<li>元素位置改变——display、float、position、overflow等等；</li>
+<li>元素尺寸改变——边距、填充、边框、宽度和高度</li>
+<li>内容改变——比如文本改变或者图片大小改变而引起的计算值宽度和高度改变；</li>
+<li>页面渲染初始化；</li>
+<li>浏览器窗口尺寸改变——resize事件发生时；</li>
+</ol>
+<h4><span id="3-ru-he-jian-shao-he-bi-mian-chong-pai">3. **如何减少和避免重排 **</span><a href="#3-ru-he-jian-shao-he-bi-mian-chong-pai" class="header-anchor">#</a></h4><p>Reflow 的成本比 Repaint 的成本高得多的多。一个节点的 Reflow 很有可能导致子节点，甚至父节点以及兄弟节点的 Reflow 。在一些高性能的电脑上也许还没什么，但是如果 Reflow 发生在手机上，那么这个过程是延慢加载和耗电的。</p>
+<ol>
+<li>直接改变className，如果动态改变样式，则使用cssText（考虑没有优化的浏览器）；</li>
+<li>让要操作的元素进行”离线处理”，处理完后一起更新；<ul>
+<li>使用DocumentFragment进行缓存操作,引发一次回流和重绘；</li>
+<li>使用display:none技术，只引发两次回流和重绘；</li>
+<li>使用cloneNode(true or false) 和 replaceChild 技术，引发一次回流和重绘；</li>
+</ul>
+</li>
+<li>不要经常访问会引起浏览器flush队列的属性，如果你确实要访问，利用缓存；</li>
+<li>让元素脱离动画流，减少回流的Render Tree的规模；</li>
+</ol>
+<h1><span id="wang-luo-qing-qiu">网络请求</span><a href="#wang-luo-qing-qiu" class="header-anchor">#</a></h1><h2><span id="tcp-san-ci-wo-shou-jian-li-lian-jie">TCP 三次握手建立连接</span><a href="#tcp-san-ci-wo-shou-jian-li-lian-jie" class="header-anchor">#</a></h2><h2><span id="tcp-si-ci-wo-shou-duan-kai-lian-jie">TCP 四次握手断开连接</span><a href="#tcp-si-ci-wo-shou-duan-kai-lian-jie" class="header-anchor">#</a></h2><h1><span id="q-amp-a">Q &amp; A</span><a href="#q-amp-a" class="header-anchor">#</a></h1><h2><span id="wei-shi-me-yao-jiang-js-fang-dao-ye-jiao-bu-fen">为什么要将js放到页脚部分</span><a href="#wei-shi-me-yao-jiang-js-fang-dao-ye-jiao-bu-fen" class="header-anchor">#</a></h2><h2><span id="yin-ru-yang-shi-de-ji-chong-fang-shi-de-quan-chong">引入样式的几种方式的权重</span><a href="#yin-ru-yang-shi-de-ji-chong-fang-shi-de-quan-chong" class="header-anchor">#</a></h2><h2><span id="css-shu-xing-shu-xie-shun-xu-jian-yi">css属性书写顺序建议</span><a href="#css-shu-xing-shu-xie-shun-xu-jian-yi" class="header-anchor">#</a></h2><h2><span id="he-chong-lei-xing-de-dom-cao-zuo-shi-hao-fei-xing-neng-de">何种类型的DOM操作是耗费性能的</span><a href="#he-chong-lei-xing-de-dom-cao-zuo-shi-hao-fei-xing-neng-de" class="header-anchor">#</a></h2><h1><span id="can-kao-wen-dang">参考文档</span><a href="#can-kao-wen-dang" class="header-anchor">#</a></h1><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000010298038">参考文档1</a><br><a target="_blank" rel="noopener" href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/">how browsers work</a><br><a target="_blank" rel="noopener" href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/">how browsers work中文翻译</a></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>前端基础之页面渲染与网路请求</p><p><a href="http://thetiso.github.io/2021/01/29/前端基础之页面渲染与网路请求/">http://thetiso.github.io/2021/01/29/前端基础之页面渲染与网路请求/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Thetiso</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-01-29</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-01-29</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/02/09/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80-%E9%80%92%E5%BD%92/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">算法基础-递归</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/01/21/sentry-docker/"><span class="level-item">sentry-docker</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Thetiso&#039;s Tech Blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Thetiso</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
