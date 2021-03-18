@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>使用笔记之Midway - Thetiso&#039;s Tech Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Thetiso&#039;s Tech Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Thetiso&#039;s Tech Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="简单记录在使用过程中遇到的问题"><meta property="og:type" content="blog"><meta property="og:title" content="使用笔记之Midway"><meta property="og:url" content="http://thetiso.github.io/2021/03/17/%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B9%8BMidway/"><meta property="og:site_name" content="Thetiso&#039;s Tech Blog"><meta property="og:description" content="简单记录在使用过程中遇到的问题"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://thetiso.github.io/img/og_image.png"><meta property="article:published_time" content="2021-03-17T07:32:07.000Z"><meta property="article:modified_time" content="2021-03-18T09:12:45.616Z"><meta property="article:author" content="Thetiso"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://thetiso.github.io/2021/03/17/%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B9%8BMidway/"},"headline":"Thetiso's Tech Blog","image":["http://thetiso.github.io/img/og_image.png"],"datePublished":"2021-03-17T07:32:07.000Z","dateModified":"2021-03-18T09:12:45.616Z","author":{"@type":"Person","name":"Thetiso"},"description":"简单记录在使用过程中遇到的问题"}</script><link rel="canonical" href="http://thetiso.github.io/2021/03/17/%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B9%8BMidway/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Thetiso&#039;s Tech Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About Me</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-03-17T07:32:07.000Z" title="2021/3/17 下午3:32:07">2021-03-17</time>发表</span><span class="level-item"><time dateTime="2021-03-18T09:12:45.616Z" title="2021/3/18 下午5:12:45">2021-03-18</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Midway/">Midway</a></span><span class="level-item">5 分钟读完 (大约676个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">使用笔记之Midway</h1><div class="content"><p>简单记录在使用过程中遇到的问题</p>
+<a id="more"></a>
+
+<h1><span id="ji-ben-shi-yong">基本使用</span><a href="#ji-ben-shi-yong" class="header-anchor">#</a></h1><p>在此不赘述，可以直接参考[midway官方文档(<a target="_blank" rel="noopener" href="https://www.yuque.com/midwayjs/midway_v2">https://www.yuque.com/midwayjs/midway_v2</a>)</p>
+<h1><span id="mac-xia-shi-yong-oracledb">mac下使用oracledb</span><a href="#mac-xia-shi-yong-oracledb" class="header-anchor">#</a></h1><p>本以为直接<code>npm i xxx</code>就可以解决，结果发现还是有很多小坑的。</p>
+<p>首先按照orm的要求写完配置之后发现报错，进一步根据报错信息打开<a target="_blank" rel="noopener" href="https://oracle.github.io/node-oracledb/INSTALL.html#instosx">oracle文档</a>。 但是这个文档其实不太容易让人明白具体要完成什么，只能莫名其妙的按照步骤一步一步走： </p>
+<ol>
+<li>下载dmg/zip, 双击打开(dmg的话)</li>
+<li>在terminal中运行指令<code>$ /Volumes/instantclient-basic-macos.x64-19.8.0.0.0dbru/install_ic.sh</code>，这时候显示如下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/Users/matthew/Downloads/instantclient_19_8</span><br><span class="line">Creating dir: /Users/matthew/Downloads/instantclient_19_8...</span><br><span class="line">Copying /Volumes/instantclient-basic-macos.x64-19.8.0.0.0dbru files ...</span><br></pre></td></tr></table></figure></li>
+<li>再次跑一下项目发现报错，显示没有找到dylib文件</li>
+<li>回到文档，按照提示把这个文件拷贝到/usr/local/lib下 <code>cp ~/Downloads/instantclient_19_8/&#123;libclntsh.dylib.19.1,libclntshcore.dylib.19.1,libnnz19.dylib,libociei.dylib&#125; /usr/local/lib/</code></li>
+<li>再次跑项目，显示    <code>TNS:listener does not currently know of service requested in connect descrip...</code> =&gt; 看了一下简书的文档，发现官方mysql的链接配置不适用oracle</li>
+<li>更改连接配置如下<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">	orm: &#123;</span><br><span class="line">	  	type: <span class="string">&#x27;oracle&#x27;</span>,</span><br><span class="line">	  	username: <span class="string">&#x27;user&#x27;</span>,</span><br><span class="line">	  	password: <span class="string">&#x27;pw&#x27;</span>,</span><br><span class="line">		connectString: <span class="string">&#x27;&#123;u_ip&#125;:&#123;u_port&#125;/&#123;u_server_name&#125;&#x27;</span>,</span><br><span class="line">	  	synchronize: <span class="literal">false</span>,</span><br><span class="line">	  	logging: <span class="literal">false</span>,</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>再次跑项目，这次在调用findOne时发现报错<code>orm  ORA-00933: SQL command not properly ended</code> =&gt; 放弃findOne, 使用find函数</li>
+<li>将entity/model下实体类的属性名改成和oracle严格一致 =&gt; 大小写必须一致 </li>
+<li>enjoy <blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/typeorm/typeorm/blob/master/docs/zh_CN/find-options.md">@midwayjs/orm-数据库find的详细文档</a><br><a target="_blank" rel="noopener" href="https://github.com/typeorm/typeorm/blob/master/docs/zh_CN/select-query-builder.md#%E6%B7%BB%E5%8A%A0%60ORDER-BY%60%E8%A1%A8%E8%BE%BE%E5%BC%8F">queryBuilder</a><br><a target="_blank" rel="noopener" href="https://www.bookstack.cn/read/TypeORM-0.2.20-zh/caching.md">前人整理的文档，事务、缓存等都可以在这里查到</a></p>
+</blockquote>
+</li>
+</ol>
+<h1><span id="linux-docker-pao-xiang-mu">linux docker跑项目</span><a href="#linux-docker-pao-xiang-mu" class="header-anchor">#</a></h1><p>最开始使用node:12来建立镜像跑服务，想起来上面说的官网配置oracle-client的事情，蹭蹭蹭按照文档搞了一遍，最后始终是环境变量无效。只好找个轮子试试<code>docker pull migutak/oracledbnode:1.0.1</code>. 开心，啥也不用配置了，简简单单按照官方文档跑服务就行。在这个过程中顺便学到了新的知识：</p>
+<ul>
+<li>Dockerfile 中的APP会自动解压、COPY不会</li>
+<li>docker run指令中-e 可以设置容易的环境变量 =&gt; 如果设置了宿主的环境变量想要内部oracledb来获取XXX_PATH,即使获取到了也无法使用对应的XXX.so文件</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>使用笔记之Midway</p><p><a href="http://thetiso.github.io/2021/03/17/使用笔记之Midway/">http://thetiso.github.io/2021/03/17/使用笔记之Midway/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Thetiso</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-03-17</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-03-18</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/03/16/ES6%E7%AC%94%E8%AE%B07-%E6%95%B0%E7%BB%84%E7%9A%84%E6%8B%93%E5%B1%95/"><span class="level-item">ES6笔记7-数组的拓展</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "4ae45f41e8dc91c17981154318d03c31",
+            repo: "blog-site-comments",
+            owner: "thetiso",
+            clientID: "6fc0041775b201d6de94",
+            clientSecret: "6e7e41e3c9efa52eaa1712f435f3890d4325596b",
+            admin: ["thetiso"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Thetiso&#039;s Tech Blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Thetiso</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
