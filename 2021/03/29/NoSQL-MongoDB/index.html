@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>NoSQL-MongoDB - Thetiso&#039;s Tech Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Thetiso&#039;s Tech Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Thetiso&#039;s Tech Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="概述 什么是NoSQL? 为什么使用NoSQL ?   安装 子账户   配合midway(egg) 不约束实体字段类型         概述#什么是NoSQL?#NoSQL，指的是非关系型的数据库。NoSQL有时也称作Not Only SQL的缩写，是对不同于传统的关系型数据库的数据库管理系统的统称。NoSQL用于超大规模数据的存储。（例如谷歌或Facebook每天为他们的用户收集"><meta property="og:type" content="blog"><meta property="og:title" content="NoSQL-MongoDB"><meta property="og:url" content="http://thetiso.github.io/2021/03/29/NoSQL-MongoDB/"><meta property="og:site_name" content="Thetiso&#039;s Tech Blog"><meta property="og:description" content="概述 什么是NoSQL? 为什么使用NoSQL ?   安装 子账户   配合midway(egg) 不约束实体字段类型         概述#什么是NoSQL?#NoSQL，指的是非关系型的数据库。NoSQL有时也称作Not Only SQL的缩写，是对不同于传统的关系型数据库的数据库管理系统的统称。NoSQL用于超大规模数据的存储。（例如谷歌或Facebook每天为他们的用户收集"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://thetiso.github.io/2021/03/29/NoSQL-MongoDB/%E5%88%9B%E5%BB%BA%E7%AE%A1%E7%90%86%E5%91%98.jpg"><meta property="og:image" content="http://thetiso.github.io/2021/03/29/NoSQL-MongoDB/vscode%E9%93%BE%E6%8E%A5.jpg"><meta property="article:published_time" content="2021-03-29T02:50:37.000Z"><meta property="article:modified_time" content="2021-03-29T08:50:45.332Z"><meta property="article:author" content="Thetiso"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/2021/03/29/NoSQL-MongoDB/%E5%88%9B%E5%BB%BA%E7%AE%A1%E7%90%86%E5%91%98.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://thetiso.github.io/2021/03/29/NoSQL-MongoDB/"},"headline":"Thetiso's Tech Blog","image":["http://thetiso.github.io/2021/03/29/NoSQL-MongoDB/%E5%88%9B%E5%BB%BA%E7%AE%A1%E7%90%86%E5%91%98.jpg","http://thetiso.github.io/2021/03/29/NoSQL-MongoDB/vscode%E9%93%BE%E6%8E%A5.jpg"],"datePublished":"2021-03-29T02:50:37.000Z","dateModified":"2021-03-29T08:50:45.332Z","author":{"@type":"Person","name":"Thetiso"},"description":"概述 什么是NoSQL? 为什么使用NoSQL ?   安装 子账户   配合midway(egg) 不约束实体字段类型         概述#什么是NoSQL?#NoSQL，指的是非关系型的数据库。NoSQL有时也称作Not Only SQL的缩写，是对不同于传统的关系型数据库的数据库管理系统的统称。NoSQL用于超大规模数据的存储。（例如谷歌或Facebook每天为他们的用户收集"}</script><link rel="canonical" href="http://thetiso.github.io/2021/03/29/NoSQL-MongoDB/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Thetiso&#039;s Tech Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About Me</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-03-29T02:50:37.000Z" title="2021/3/29 上午10:50:37">2021-03-29</time>发表</span><span class="level-item"><time dateTime="2021-03-29T08:50:45.332Z" title="2021/3/29 下午4:50:45">2021-03-29</time>更新</span><span class="level-item">8 分钟读完 (大约1200个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">NoSQL-MongoDB</h1><div class="content"><a id="more"></a>
+
+<div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#gai-shu">概述</a><ul>
+<li><a href="#shi-me-shi-nosql">什么是NoSQL?</a></li>
+<li><a href="#wei-shi-me-shi-yong-nosql">为什么使用NoSQL ?</a></li>
+</ul>
+</li>
+<li><a href="#an-zhuang">安装</a><ul>
+<li><a href="#zi-zhang-hu">子账户</a></li>
+</ul>
+</li>
+<li><a href="#pei-he-midway-egg">配合midway(egg)</a><ul>
+<li><a href="#bu-yue-shu-shi-ti-zi-duan-lei-xing">不约束实体字段类型</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<hr>
+<h1><span id="gai-shu">概述</span><a href="#gai-shu" class="header-anchor">#</a></h1><h2><span id="shi-me-shi-nosql">什么是NoSQL?</span><a href="#shi-me-shi-nosql" class="header-anchor">#</a></h2><p>NoSQL，指的是非关系型的数据库。NoSQL有时也称作Not Only SQL的缩写，是对不同于传统的关系型数据库的数据库管理系统的统称。<br>NoSQL用于超大规模数据的存储。（例如谷歌或Facebook每天为他们的用户收集万亿比特的数据）。这些类型的数据存储不需要固定的模式，无需多余操作就可以横向扩展。</p>
+<h2><span id="wei-shi-me-shi-yong-nosql">为什么使用NoSQL ?</span><a href="#wei-shi-me-shi-yong-nosql" class="header-anchor">#</a></h2><p>今天我们可以通过第三方平台（如：Google,Facebook等）可以很容易的访问和抓取数据。用户的个人信息，社交网络，地理位置，用户生成的数据和用户操作<strong>日志</strong>已经成倍的增加。我们如果要对这些用户数据进行挖掘，那SQL数据库已经不适合这些应用了, NoSQL数据库的发展也却能很好的处理这些大的数据。</p>
+<h1><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor">#</a></h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9e42f56c6b2d">参考文档–简书</a><br><a target="_blank" rel="noopener" href="https://www.mongodb.org.cn/tutorial/2.html">操作手册</a><br>我是在mac上直接通过docker安装，全程没遇到问题！</p>
+<img src="/2021/03/29/NoSQL-MongoDB/%E5%88%9B%E5%BB%BA%E7%AE%A1%E7%90%86%E5%91%98.jpg" class="center" alt="创建管理员">
+
+<p>使用vscode上的mongodb组件来验证是否正常。</p>
+<img src="/2021/03/29/NoSQL-MongoDB/vscode%E9%93%BE%E6%8E%A5.jpg" class="center" alt="vscode链接">
+
+<h2><span id="zi-zhang-hu">子账户</span><a href="#zi-zhang-hu" class="header-anchor">#</a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mongo mongo admin</span><br></pre></td></tr></table></figure>
+<p>第一个mongo是指容器名称，建议重新取个名字.<br>第二个mongo是指令名称,就想我们使用mysql链接关系型数据库一样<br>最后的admin是指默认登录的账户。=&gt; 也可能是我理解错误了</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先创建一个管理权限的账户  =&gt; 交做admin超管, 也可以是root或者其他什么名字</span></span><br><span class="line">db.createUser(&#123; user:<span class="string">&#x27;admin&#x27;</span>,<span class="built_in">pwd</span>:<span class="string">&#x27;123456&#x27;</span>,roles:[ &#123; role:<span class="string">&#x27;userAdminAnyDatabase&#x27;</span>, db: <span class="string">&#x27;admin&#x27;</span>&#125;]&#125;);  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>user：用户名</li>
+<li>pwd：密码</li>
+<li>roles：指定用户的角色，可以用一个空数组给新用户设定空角色；在roles字段,可以指定内置角色和用户定义的角色。role里的角色可以选：<br>Built-In Roles（内置角色）：<br>    1. 数据库用户角色：read、readWrite;<br>    2. 数据库管理角色：dbAdmin、dbOwner、userAdmin；<br>    3. 集群管理角色：clusterAdmin、clusterManager、clusterMonitor、hostManager；<br>    4. 备份恢复角色：backup、restore；<br>    5. 所有数据库角色：readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase<br>    6. 超级用户角色：root <br>    // 这里还有几个角色间接或直接提供了系统超级用户的访问（dbOwner 、userAdmin、userAdminAnyDatabase）<br>    7. 内部角色：__system</li>
+</ul>
+<p>具体角色：</p>
+<ul>
+<li>Read：允许用户读取指定数据库</li>
+<li>readWrite：允许用户读写指定数据库</li>
+<li>dbAdmin：允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile</li>
+<li>userAdmin：允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户</li>
+<li>clusterAdmin：只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。</li>
+<li>readAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读权限</li>
+<li>readWriteAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读写权限</li>
+<li>userAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的userAdmin权限</li>
+<li>dbAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。</li>
+<li>root：只在admin数据库中可用。超级账号，超级权限。</li>
+</ul>
+<p>刚建立了 userAdminAnyDatabase 角色，用来管理用户，可以通过这个角色来创建、删除用户。</p>
+<p>接下来为了创建各种环境的库(建议最好还是部署在不同的服务器上，或者直接使用成熟的云库)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123; user:&#39;u_name&#39;,pwd:&#39;u_pw&#39;,roles:[ &#123; role:&#39;dbOwner&#39;, db: &#39;u_db&#39;&#125;]&#125;); </span><br><span class="line"># 查看是否创建成功</span><br><span class="line">show users  </span><br><span class="line"># 验证子账户</span><br><span class="line">db.auth(&quot;u_name&quot;, &quot;u_pw&quot;)</span><br><span class="line"># 创建你的库  &#x3D;&gt; 没插入数据前，show dbs不会显示出来</span><br><span class="line">use u_db</span><br><span class="line"># 创建集合，类似于sql中的表</span><br><span class="line">db.createCollection(&#39;students&#39;)</span><br><span class="line"># 新建数据</span><br><span class="line">db.students.save(&#123;&quot;name&quot;: &quot;zhang san&quot;&#125;)</span><br><span class="line"># 查看数据集合是否创建成功</span><br><span class="line">show dbs</span><br></pre></td></tr></table></figure>
+
+<h1><span id="pei-he-midway-egg">配合midway(egg)</span><a href="#pei-he-midway-egg" class="header-anchor">#</a></h1><p><a target="_blank" rel="noopener" href="https://www.yuque.com/midwayjs/midway_v2/mongo">midway参考文档</a><br><a target="_blank" rel="noopener" href="https://typegoose.github.io/typegoose/docs/api/decorators/model-options/#allowmixed">typegoose文档</a></p>
+<h2><span id="bu-yue-shu-shi-ti-zi-duan-lei-xing">不约束实体字段类型</span><a href="#bu-yue-shu-shi-ti-zi-duan-lei-xing" class="header-anchor">#</a></h2><figure class="highlight js"><figcaption><span>/model/log.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;ModelOptions, prop, Severity &#125; <span class="keyword">from</span> <span class="string">&#x27;@typegoose/typegoose&#x27;</span>;</span><br><span class="line"></span><br><span class="line">@ModelOptions(&#123;<span class="attr">options</span>: &#123;<span class="attr">allowMixed</span>: Severity.ALLOW&#125;&#125;)  <span class="comment">//这一行是关键</span></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Log</span> </span>&#123;</span><br><span class="line">  @prop()</span><br><span class="line">  public path: string;</span><br><span class="line">  @prop()</span><br><span class="line">  public path_desc?: string;</span><br><span class="line">  @prop()</span><br><span class="line">  public query?: any;</span><br><span class="line">  @prop()</span><br><span class="line">  public params?: any;</span><br><span class="line">  @prop()</span><br><span class="line">  public req_body?: any;</span><br><span class="line">  @prop()</span><br><span class="line">  public res_body?: any;</span><br><span class="line">  @prop()</span><br><span class="line">  timestamp: number;</span><br><span class="line">  @prop()</span><br><span class="line">  date: string;</span><br><span class="line"><span class="comment">//   @prop(&#123; type: () =&gt; [String] &#125;)</span></span><br><span class="line"><span class="comment">//   public jobs?: string[];</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</div><div class="article-licensing box"><div class="licensing-title"><p>NoSQL-MongoDB</p><p><a href="http://thetiso.github.io/2021/03/29/NoSQL-MongoDB/">http://thetiso.github.io/2021/03/29/NoSQL-MongoDB/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Thetiso</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-03-29</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-03-29</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/03/29/ES6%E7%AC%94%E8%AE%B012-module/"><span class="level-item">ES6笔记12-module</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Thetiso&#039;s Tech Blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 Thetiso</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
